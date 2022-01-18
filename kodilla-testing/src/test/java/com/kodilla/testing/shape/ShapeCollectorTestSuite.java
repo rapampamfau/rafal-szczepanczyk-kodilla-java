@@ -58,16 +58,17 @@ public class ShapeCollectorTestSuite {
             Shape circle = new Circle("Circle", 42.2);
             Shape triangle = new Triangle("Triangle", 12);
             ShapeCollector collector = new ShapeCollector();
+            collector.addFigure(square);
+            collector.addFigure(circle);
+            collector.addFigure(triangle);
 
             //When
-            boolean resultSquare = collector.removeFigure(square);
-            boolean resultCircle = collector.removeFigure(circle);
-            boolean resultTriangle = collector.removeFigure(triangle);
+             collector.removeFigure(square);
+             collector.removeFigure(circle);
+             collector.removeFigure(triangle);
 
             //Then
-            assertFalse(resultSquare);
-            assertFalse(resultCircle);
-            assertFalse(resultTriangle);
+            assertEquals(0, collector.shapeList.size());
         }
     }
 
@@ -104,16 +105,19 @@ public class ShapeCollectorTestSuite {
         @Test
         void testShowFigures() {
             //Given
-            Shape square = new Square("Square", 144);
+            Shape square = new Square("Square", 144.0);
             Shape circle = new Circle("Circle", 42.2);
-            Shape triangle = new Triangle("Triangle", 12);
+            Shape triangle = new Triangle("Triangle", 12.0);
             ShapeCollector collector = new ShapeCollector();
+            collector.shapeList.add(square);
+            collector.shapeList.add(circle);
+            collector.shapeList.add(triangle);
 
             //When
-            boolean expectedResult = collector.showFigures();
+            String result = collector.showFigures();
 
             //Then
-            assertFalse(expectedResult);
+            assertEquals("Square = 144.0, Circle = 42.2, Triangle = 12.0", result);
         }
     }
 }

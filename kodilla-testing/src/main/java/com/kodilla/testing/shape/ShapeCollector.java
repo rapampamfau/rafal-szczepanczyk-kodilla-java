@@ -1,7 +1,5 @@
 package com.kodilla.testing.shape;
 
-import com.kodilla.testing.forum.ForumComment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +12,10 @@ public class ShapeCollector {
         shapeList.add(shape);
     }
 
-    public boolean removeFigure(Shape shape) {
-        boolean result = false;
+    public void removeFigure(Shape shape) {
         if (shapeList.contains(shape)) {
             shapeList.remove(shape);
-            result = true;
         }
-        return result;
     }
 
     public Shape getFigure(int n) {
@@ -31,14 +26,15 @@ public class ShapeCollector {
         return shape;
     }
 
-    public boolean showFigures() {
-        boolean result = true;
-        if (shapeList.size() >= 0) {
-            for(Shape shapes: shapeList) {
-                System.out.println(shapes);
-            }
-            result = false;
+    public String showFigures() {
+        StringBuilder strbul = new StringBuilder();
+        for(Shape shapes : shapeList) {
+            String result = shapes.getShapeName() + " = " + shapes.getField();
+            strbul.append(result);
+            strbul.append(", ");
         }
+        strbul.setLength(strbul.length()-2);
+        String result = strbul.toString();
         return result;
     }
 
