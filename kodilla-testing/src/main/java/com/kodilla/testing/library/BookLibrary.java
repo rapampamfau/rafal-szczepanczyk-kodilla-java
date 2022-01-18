@@ -21,6 +21,10 @@ public class BookLibrary {
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser) {
         List<Book> bookList = new ArrayList<>();
+        if (libraryUser == null) return bookList;
+        List<Book> resultList = libraryDatabase.listBooksInHandsOf(libraryUser);
+        if (libraryUser.getPeselId().length() != 11) return bookList;
+        bookList = resultList;
         return bookList;
     }
 }
