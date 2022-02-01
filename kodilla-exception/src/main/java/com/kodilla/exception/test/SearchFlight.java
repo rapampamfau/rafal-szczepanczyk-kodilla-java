@@ -12,12 +12,15 @@ public class SearchFlight {
         flights.put("London", true);
         flights.put("Amsterdam", false);
 
-        if (flight.getArrivalAirport().equals(flights.keySet())) {
-            System.out.println(flight + " is available");
-        } else {
-            throw new RouteNotFoundException("The flight doesn't exist");
-        }
+        boolean available = true;
 
+        try {
+            if (flights.get(flight.getArrivalAirport()) == available) {
+                System.out.println(flight + " is available");
+            }
+        } catch (NullPointerException e) {
+            throw new RouteNotFoundException("Flight doesn't exist");
+        }
     }
 
     public static void main(String[] args) {
@@ -30,7 +33,25 @@ public class SearchFlight {
         try {
             searchFlight.findFlight(flight1);
         } catch (RouteNotFoundException e) {
-            System.out.println("Problem");
+            System.out.println("Problem! " + e);
+        }
+
+        try {
+            searchFlight.findFlight(flight2);
+        } catch (RouteNotFoundException e) {
+            System.out.println("Problem! " + e);
+        }
+
+        try {
+            searchFlight.findFlight(flight3);
+        } catch (RouteNotFoundException e) {
+            System.out.println("Problem! " + e);
+        }
+
+        try {
+            searchFlight.findFlight(flight4);
+        } catch (RouteNotFoundException e) {
+            System.out.println("Problem! " + e);
         }
     }
 }
