@@ -16,7 +16,11 @@ class InvoiceDaoTestSuite {
     @Autowired
     private InvoiceDao invoiceDao;
 
-    @Autowired ProductDao productDao;
+    @Autowired
+    private ItemDao itemDao;
+
+    @Autowired
+    private ProductDao productDao;
 
     @Test
     void testInvoiceDaoSave() {
@@ -60,7 +64,8 @@ class InvoiceDaoTestSuite {
         assertNotEquals(0, invoice2Id);
 
         //CleanUp
-        invoiceDao.deleteById(invoice1Id);
-        invoiceDao.deleteById(invoice1Id);
+        itemDao.deleteAll();
+        productDao.deleteAll();
+        invoiceDao.deleteAll();
     }
 }
